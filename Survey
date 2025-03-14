@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Appliances Market Research</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #f0f4c3, #e8f5e9, #bbdefb);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Prevent double scrollbars */
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin: 20px;
+            overflow-y: auto; /* Add scrolling for container */
+            max-height: 80vh; /* Limit height of the container */
+        }
+        h1 {
+            text-align: center;
+            color: #388e3c;
+            margin-bottom: 30px;
+        }
+        .question-box {
+            background-color: #f7f9fc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .question-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+        input[type="text"], input[type="checkbox"], input[type="radio"] {
+            margin-right: 10px;
+        }
+        .submit-button {
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .submit-button:hover {
+            background-color: #64b5f6;
+        }
+        .submit-button:disabled {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+        .other-brand {
+            display: none; /* Hidden by default */
+            margin-top: 10px; /* Add some spacing */
+        }
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Home Appliances Market Research</h1>
+        <form id="surveyForm">
+            <div class="question-box">
+                <label>1. Which home appliance brands do you currently own? (Select all that apply)</label>
+                <input type="checkbox" name="brand" value="LG"> LG<br>
+                <input type="checkbox" name="brand" value="Samsung"> Samsung<br>
+                <input type="checkbox" name="brand" value="Whirlpool"> Whirlpool<br>
+                <input type="checkbox" name="brand" value="Bosch"> Bosch<br>
+                <input type="checkbox" name="brand" value="Voltas"> Voltas<br>
+                <input type="checkbox" id="others" name="brand" value="Others"> Others (please specify)
+                <input type="text" id="otherBrandInput" class="other-brand" name="other-brand" placeholder="Other brand"><br>
+            </div>
+            <div class="question-box">
+                <label>2. How often do you purchase new home appliances?</label>
+                <input type="radio" name="purchaseFrequency" value="Once a year"> Once a year<br>
+                <input type="radio" name="purchaseFrequency" value="Every 2-3 years"> Every 2-3 years<br>
+                <input type="radio" name="purchaseFrequency" value="Every 4-5 years"> Every 4-5 years<br>
+                <input type="radio" name="purchaseFrequency" value="More than 5 years"> More than 5 years<br>
+            </div>
+            <!-- Question 3: Influencing Factors -->
+            <div class="question-box">
+                <label>3. What factors most influence your decision to purchase a home appliance? (Rank in order of importance)</label>
+                <input type="checkbox" name="influencing_factors" value="Price"> Price<br>
+                <input type="checkbox" name="influencing_factors" value="Brand reputation"> Brand reputation<br>
+                <input type="checkbox" name="influencing_factors" value="Energy efficiency"> Energy efficiency<br>
+                <input type="checkbox" name="influencing_factors" value="Features and technology"> Features and technology<br>
+                <input type="checkbox" name="influencing_factors" value="After-sales service"> After-sales service<br>
+            </div>
+
+            <!-- Question 4: Smart Appliances -->
+            <div class="question-box">
+                <label>4. Are you interested in smart home appliances (e.g., Wi-Fi-enabled devices)?</label>
+                <input type="radio" name="smart_appliances" value="Yes"> Yes<br>
+                <input type="radio" name="smart_appliances" value="No"> No<br>
+                <input type="radio" name="smart_appliances" value="Maybe"> Maybe<br>
+            </div>
+
+            <!-- Question 5: Energy Efficiency -->
+            <div class="question-box">
+                <label>5. How important is energy efficiency to you when selecting a home appliance?</label>
+                <input type="radio" name="energy_efficiency" value="Very important"> Very important<br>
+                <input type="radio" name="energy_efficiency" value="Somewhat important"> Somewhat important<br>
+                <input type="radio" name="energy_efficiency" value="Not important"> Not important<br>
+            </div>
+
+            <!-- Question 6: Purchase Channels -->
+            <div class="question-box">
+                <label>6. Where do you typically purchase home appliances? (Select all that apply)</label>
+                <input type="checkbox" name="purchase_channels" value="Online"> Online (e.g., Amazon, Flipkart)<br>
+                <input type="checkbox" name="purchase_channels" value="Local retail stores"> Local retail stores<br>
+                <input type="checkbox" name="purchase_channels" value="Brand showrooms"> Brand showrooms<br>
+                <input type="checkbox" name="purchase_channels" value="Discount stores"> Discount stores<br>
+            </div>
+
+            <!-- Question 7: Repair vs. Replace -->
+            <div class="question-box">
+                <label>7. When your home appliance breaks down, what is your usual course of action?</label>
+                <input type="radio" name="repair_replace" value="Repair it"> Repair it<br>
+                <input type="radio" name="repair_replace" value="Replace it"> Replace it with a new one<br>
+                <input type="radio" name="repair_replace" value="Depends on the appliance"> Depends on the appliance and cost of repair<br>
+            </div>
+
+            <!-- Question 8: Key Decision Factors -->
+            <div class="question-box">
+                <label>8. What is the most important factor when purchasing a home appliance?</label>
+                <input type="radio" name="key_decision_factors" value="Price"> Price<br>
+                <input type="radio" name="key_decision_factors" value="Energy efficiency"> Energy efficiency<br>
+                <input type="radio" name="key_decision_factors" value="Durability and longevity"> Durability and longevity<br>
+                <input type="radio" name="key_decision_factors" value="Brand reputation"> Brand reputation<br>
+                <input type="radio" name="key_decision_factors" value="Smart technology features"> Smart technology features<br>
+            </div>
+
+            <!-- Question 9: Eco-friendliness -->
+            <div class="question-box">
+                <label>9. How important is it for the product to be eco-friendly or sustainable?</label>
+                <input type="radio" name="eco_friendliness" value="Very important"> Very important<br>
+                <input type="radio" name="eco_friendliness" value="Somewhat important"> Somewhat important<br>
+                <input type="radio" name="eco_friendliness" value="Not important"> Not important<br>
+            </div>
+
+            <!-- Question 10: Product Reviews and Recommendations -->
+            <div class="question-box">
+                <label>10. How do you typically decide which appliance to buy?</label>
+                <input type="checkbox" name="reviews_recommendations" value="Online reviews"> Online reviews<br>
+                <input type="checkbox" name="reviews_recommendations" value="Word of mouth"> Word of mouth<br>
+                <input type="checkbox" name="reviews_recommendations" value="Advertisements"> Advertisements<br>
+                <input type="checkbox" name="reviews_recommendations" value="In-store demonstrations"> In-store demonstrations<br>
+            </div>
+            <div class="question-box">
+                <label>11.When purchasing home appliances, what is your typical budget range for major items (e.g., refrigerators, washing machines)?
+</label>
+                <input type="radio" name="reviews_recommendations" value="Under ₹25,000">Under ₹25,000 <br>
+                <input type="radio" name="reviews_recommendations" value="₹25,000 - ₹40,000">₹25,000 - ₹40,000<br>
+                <input type="radio" name="reviews_recommendations" value="₹40,000 - ₹60,000"> ₹40,000 - ₹60,000<br>
+                <input type="radio" name="reviews_recommendations" value="Over ₹70,000 ">Over ₹70,000 <br>
+            </div>
+
+            
+            <button type="button" class="submit-button" id="submitBtn">Submit</button>
+        </form>
+    </div>
+
+    <div class="popup" id="thankYouPopup">
+        <p>Thank you and have a good day! 😊</p>
+        <button id="closePopup">Close</button>
+    </div>
+
+    <script>
+        // Toggle visibility of the "Other brand" input based on checkbox
+        document.getElementById('others').addEventListener('change', function () {
+            const otherBrandInput = document.getElementById('otherBrandInput');
+            if (this.checked) {
+                otherBrandInput.style.display = 'block'; // Show input if checked
+            } else {
+                otherBrandInput.style.display = 'none'; // Hide input if not checked
+                otherBrandInput.value = ''; // Clear input value
+            }
+        });
+
+
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            const confirmSubmit = confirm("Are you sure you want to submit?");
+            if (confirmSubmit) {
+                // Show Thank You pop-up
+                document.getElementById('thankYouPopup').style.display = 'block';
+
+                // Disable the submit button
+                document.getElementById('submitBtn').disabled = true;
+
+                // Save form data to localStorage
+                const formData = new FormData(document.getElementById('surveyForm'));
+                const choices = {};
+                formData.forEach((value, key) => {
+                    choices[key] = value;
+                });
+                localStorage.setItem('surveyResponses', JSON.stringify(choices));
+            }
+        });
+
+        document.getElementById('closePopup').addEventListener('click', function () {
+            document.getElementById('thankYouPopup').style.display = 'none';
+            // Clear local storage to reset choices
+            localStorage.removeItem('surveyResponses');
+        });
+
+        // Load stored choices on page load
+        window.addEventListener('load', function () {
+            const storedChoices = JSON.parse(localStorage.getItem('surveyResponses'));
+            if (storedChoices) {
+                for (const [key, value] of Object.entries(storedChoices)) {
+                    const input = document.querySelector(`[name="${key}"]`);
+                    if (input) {
+                        if (input.type === 'checkbox') {
+                            input.checked = Array.isArray(value) ? value.includes(input.value) : false;
+                        } else {
+                            input.checked = (input.value === value);
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
