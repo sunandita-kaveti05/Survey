@@ -1,0 +1,296 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Appliances Market Research</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #f0f4c3, #e8f5e9, #bbdefb);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Prevent double scrollbars */
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin: 20px;
+            overflow-y: auto; /* Add scrolling for container */
+            max-height: 80vh; /* Limit height of the container */
+        }
+        h1 {
+            text-align: center;
+            color: #388e3c;
+            margin-bottom: 30px;
+        }
+        .question-box {
+            background-color: #f7f9fc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .question-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+        input[type="text"], input[type="email"], input[type="checkbox"], input[type="radio"] {
+            margin-right: 10px;
+        }
+        .submit-button {
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .submit-button:hover {
+            background-color: #64b5f6;
+        }
+        .submit-button:disabled {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+        .other-brand {
+            display: none; /* Hidden by default */
+            margin-top: 10px; /* Add some spacing */
+        }
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="initialFormContainer">
+        <h1>Welcome to Our Market Research</h1>
+        <form id="userInfoForm">
+            <div class="question-box">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <span class="error" id="nameError"></span>
+                <br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error" id="emailError"></span>
+                <br><br>
+
+                <button type="submit" class="submit-button" id="startSurveyBtn">Take Survey</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Hidden survey form, shown after submitting the name and email -->
+    <div class="container" id="surveyFormContainer" style="display:none;">
+        <h1>Home Appliances Market Research</h1>
+        <form id="surveyForm">
+            <!-- Same Home Appliances Market Research form here -->
+            <div class="question-box">
+                <label>1. Which home appliance brands do you currently own? (Select all that apply)</label>
+                <input type="checkbox" name="brand" value="LG"> LG<br>
+                <input type="checkbox" name="brand" value="Samsung"> Samsung<br>
+                <input type="checkbox" name="brand" value="Whirlpool"> Whirlpool<br>
+                <input type="checkbox" name="brand" value="Bosch"> Bosch<br>
+                <input type="checkbox" name="brand" value="Voltas"> Voltas<br>
+                <input type="checkbox" id="others" name="brand" value="Others"> Others (please specify)
+                <input type="text" id="otherBrandInput" class="other-brand" name="other-brand" placeholder="Other brand"><br>
+            </div>
+
+            <!-- Question 2: Influencing Factors -->
+            <div class="question-box">
+                <label>2. What factors most influence your decision to purchase a home appliance? (Rank in order of importance)</label>
+                <input type="checkbox" name="influencing_factors" value="Price"> Price<br>
+                <input type="checkbox" name="influencing_factors" value="Brand reputation"> Brand reputation<br>
+                <input type="checkbox" name="influencing_factors" value="Energy efficiency"> Energy efficiency<br>
+                <input type="checkbox" name="influencing_factors" value="Features and technology"> Features and technology<br>
+                <input type="checkbox" name="influencing_factors" value="After-sales service"> After-sales service<br>
+            </div>
+
+            <!-- Question 3: Smart Appliances -->
+            <div class="question-box">
+                <label>3. Are you interested in smart home appliances (e.g., Wi-Fi-enabled devices)?</label>
+                <input type="radio" name="smart_appliances" value="Yes"> Yes<br>
+                <input type="radio" name="smart_appliances" value="No"> No<br>
+                <input type="radio" name="smart_appliances" value="Maybe"> Maybe<br>
+            </div>
+
+            <!-- Question 4: Energy Efficiency -->
+            <div class="question-box">
+                <label>4. How important is energy efficiency to you when selecting a home appliance?</label>
+                <input type="radio" name="energy_efficiency" value="Very important"> Very important<br>
+                <input type="radio" name="energy_efficiency" value="Somewhat important"> Somewhat important<br>
+                <input type="radio" name="energy_efficiency" value="Not important"> Not important<br>
+            </div>
+
+           
+
+           
+
+            <!-- Question 5: Product Reviews and Recommendations -->
+<div class="question-box">
+    <label>5. How do you typically decide which appliance to buy?</label>
+    <input type="checkbox" name="reviews_recommendations" value="Online reviews"> Online reviews<br>
+    <input type="checkbox" name="reviews_recommendations" value="Word of mouth"> Word of mouth<br>
+    <input type="checkbox" name="reviews_recommendations" value="Advertisements"> Advertisements<br>
+    <input type="checkbox" name="reviews_recommendations" value="In-store demonstrations"> In-store demonstrations<br>
+</div>
+
+<!-- Question 6: Budget Range -->
+<div class="question-box">
+    <label>6. When purchasing home appliances, what is your typical budget range for major items (e.g., refrigerators, washing machines)?</label>
+    <input type="radio" name="budget_range" value="Under ₹25,000">Under ₹25,000 <br>
+    <input type="radio" name="budget_range" value="₹25,000 - ₹40,000">₹25,000 - ₹40,000<br>
+    <input type="radio" name="budget_range" value="₹40,000 - ₹60,000"> ₹40,000 - ₹60,000<br>
+    <input type="radio" name="budget_range" value="Over ₹70,000">Over ₹70,000 <br>
+</div>
+
+            <button type="button" class="submit-button" id="submitSurveyBtn">Submit</button>
+        </form>
+    </div>
+
+    <div class="popup" id="thankYouPopup">
+        <p>Thank you and have a good day! 😊</p>
+        <button id="closePopup">Close</button>
+    </div>
+    <div class="container" id="resultsContainer" style="display: none;">
+        <h1>Survey Results</h1>
+        <div id="resultsContent"></div>
+        <button id="backToSurvey" class="submit-button">Back to Survey</button>
+    </div>
+    
+
+    <script>
+        // Toggle visibility of the "Other brand" input based on checkbox
+        document.getElementById('others').addEventListener('change', function () {
+            const otherBrandInput = document.getElementById('otherBrandInput');
+            if (this.checked) {
+                otherBrandInput.style.display = 'block'; // Show input if checked
+            } else {
+                otherBrandInput.style.display = 'none'; // Hide input if not checked
+                otherBrandInput.value = ''; // Clear input value
+            }
+        });
+
+        // Initial form validation and transition to survey
+    
+    document.getElementById('userInfoForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    let isValid = true;
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (isValid) {
+        fetch('http://localhost:3000/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.userId) {
+                localStorage.setItem('userId', data.userId);
+                document.getElementById('initialFormContainer').style.display = 'none';
+                document.getElementById('surveyFormContainer').style.display = 'block';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+});
+
+
+document.getElementById('submitSurveyBtn').addEventListener('click', function () {
+    const confirmSubmit = confirm("Are you sure you want to submit?");
+
+    // Capture multiple checkbox values for brands
+    const brands = [];
+    document.querySelectorAll('input[name="brand"]:checked').forEach((checkbox) => {
+        brands.push(checkbox.value);
+    });
+
+    // Capture multiple checkbox values for influencing factors
+    const influencingFactors = [];
+    document.querySelectorAll('input[name="influencing_factors"]:checked').forEach((checkbox) => {
+        influencingFactors.push(checkbox.value);
+    });
+
+    // Capture multiple checkbox values for reviews recommendations
+    const reviewsRecommendations = [];
+    document.querySelectorAll('input[name="reviews_recommendations"]:checked').forEach((checkbox) => {
+        reviewsRecommendations.push(checkbox.value);
+    });
+
+    // Capture the selected budget range
+    const budgetRange = document.querySelector('input[name="budget_range"]:checked')?.value;
+
+    // Create the data object
+    const data = {
+        brand: brands.join(', '),  // Comma-separated values
+        influencing_factors: influencingFactors.join(', '),  // Comma-separated values
+        smart_appliances: document.querySelector('input[name="smart_appliances"]:checked')?.value,
+        energy_efficiency: document.querySelector('input[name="energy_efficiency"]:checked')?.value,
+        reviews_recommendations: reviewsRecommendations.join(', '),  // Comma-separated values
+        budget_range: budgetRange, // Correctly capture the budget range value
+    };
+
+    if (confirmSubmit) {
+        const userId = localStorage.getItem('userId');
+        data.userId = userId; // Add the user ID
+
+        fetch('http://localhost:3000/submit-survey', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data) // Use the created data object
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            // Optionally show the thank you popup
+            document.getElementById('thankYouPopup').style.display = 'block';
+        })
+        .catch(error => console.error('Error:', error));
+    }
+});
+
+
+
+
+        // Close popup and reset form
+        document.getElementById('closePopup').addEventListener('click', function () {
+            document.getElementById('thankYouPopup').style.display = 'none';
+            localStorage.removeItem('surveyResponses'); // Reset choices
+        });
+    </script>
+
+</body>
+</html>
